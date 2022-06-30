@@ -1,0 +1,12 @@
+#img {
+  height: 50px;
+  width: 50px;
+}
+.video{
+    position: fixed;
+    height: 100vh;
+    z-index: -1;
+    right: 0;
+    top: 0;
+    object-fit: contain ;
+  };

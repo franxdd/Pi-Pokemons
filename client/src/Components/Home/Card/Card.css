@@ -1,0 +1,10 @@
+.card{
+    margin: 10px;
+    border: 0px solid rgb(0, 0, 0);
+    width: 200px;
+    height: 250px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 4px rgba(0,0,0,0.30);
+    backdrop-filter: blur(0.2rem);
+    cursor: pointer;
+}

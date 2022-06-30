@@ -1,0 +1,14 @@
+.card1{
+    display: flex;   
+    justify-content: center;
+    width: 40%;
+    height: 800px;
+    flex-direction: column;
+   
+}
+.image{
+
+}
+.detail1{
+
+}
