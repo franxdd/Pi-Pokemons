@@ -43,7 +43,6 @@ const rootRouter = (state = initialState, action) => {
       };
     case FILTER_POKEMON_TYPE:
       const todospoke = state.allPokemons;
-      console.log(todospoke);
       if (action.payload === "All") {
         return {
           ...state,
@@ -53,7 +52,6 @@ const rootRouter = (state = initialState, action) => {
         const filterPokemons = todospoke.filter((t) =>
           t.type.includes(action.payload)
         );
-        console.log(filterPokemons);
         return {
           ...state,
           allPokemons: filterPokemons,
@@ -62,13 +60,13 @@ const rootRouter = (state = initialState, action) => {
 
     case FILTER_POKEMON_DB:
       if (action.payload === "Creado") {
-        let created = state.backup.filter((e) => e.createInDB);
+        let created = state.allPokemons.filter((e) => e.createInDB);
         return {
           ...state,
           allPokemons: created,
         };
       } else if (action.payload === "Existente") {
-        let created = state.backup.filter((e) => !e.createInDB);
+        let created = state.allPokemons.filter((e) => !e.createInDB);
         return {
           ...state,
           allPokemons: created,
@@ -82,7 +80,7 @@ const rootRouter = (state = initialState, action) => {
     case ORDER_BY_NAME:
       let order =
         action.payload === "Ascendente"
-          ? state.allPokemons.sort(function(a, b){
+          ? state.allPokemons.sort(function (a, b) {
               if (a.name > b.name) {
                 return 1;
               }
@@ -91,7 +89,7 @@ const rootRouter = (state = initialState, action) => {
               }
               return 0;
             })
-          : state.allPokemons.sort(function(a, b) {
+          : state.allPokemons.sort(function (a, b) {
               if (a.name > b.name) {
                 return -1;
               }
@@ -104,37 +102,36 @@ const rootRouter = (state = initialState, action) => {
         ...state,
         allPokemons: order,
       };
-case GET_POKEMONS_NAME:
-    return{
-      ...state,
-      allPokemons: action.payload
-    }
-case ORDER_BY_ATTACK:
-  let attack =
+    case GET_POKEMONS_NAME:
+      return {
+        ...state,
+        allPokemons: action.payload,
+      };
+    case ORDER_BY_ATTACK:
+      let attack =
         action.payload === "MIN"
-          ? state.allPokemons.sort(function(a, b){
-              if (a.stats[1].base > b.stats[1].base) {
-                console.log(a.stats[1].base)
+          ? state.allPokemons.sort(function (a, b) {
+              if (a.attack > b.attack) {
                 return 1;
               }
-              if (b.stats[1].base > a.stats[1].base) {
+              if (b.attack > a.attack) {
                 return -1;
               }
               return 0;
             })
-          : state.allPokemons.sort(function(a, b) {
-              if (a.stats[1].base > b.stats[1].base) {
+          : state.allPokemons.sort(function (a, b) {
+              if (a.attack > b.attack) {
                 return -1;
               }
-              if (b.stats[1].base > a.stats[1].base) {
+              if (b.attack > a.attack) {
                 return 1;
               }
               return 0;
             });
-return{
-    ...state,
-    allPokemons: attack
-  }
+      return {
+        ...state,
+        allPokemons: attack,
+      };
 
     default:
       return { ...state };

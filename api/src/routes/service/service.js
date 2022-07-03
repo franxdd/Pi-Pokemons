@@ -11,27 +11,43 @@ const infoApi = async () => {
 
     const datos2 = datos.concat(isdmnf);
     const DatosFinalFinalisima = datos2.map((g) => axios.get(g.url));
-    console.log(DatosFinalFinalisima);
 
-    const culo = await axios.all(DatosFinalFinalisima);
-    const culo2 = culo.map((f) => f.data);
-    const final = culo2.map((c) => {
+    const datos3 = await axios.all(DatosFinalFinalisima);
+    const datos4 = datos3.map((f) => f.data);
+    var obj = {};
+    const final = datos4.map((c) => {
+      var stats = c.stats
+        .map((b) => {
+          return {
+            [b.stat.name]: b.base_stat,
+          };
+        })
+        .filter(
+          (r) =>
+            !r.hasOwnProperty("special-attack") &&
+            !r.hasOwnProperty("special-defense")
+        );
+      for (let i = 0; i < stats.length; i++) {
+        for (const props in stats[i]) {
+          obj[props] = stats[i][props];
+        }
+      }
       return {
         id: c.id,
         name: c.name,
         type: c.types.map((a) => a.type.name),
-        image: c.sprites.versions["generation-v"]["black-white"].animated.front_default,
-        stats: c.stats.map((b) => {
-          return {
-            base: b.base_stat,
-            nombre: b.stat.name,
-          };
-        }).filter(f => f.nombre !== "special-attack" && f.nombre !== "special-defense"),
+        image:
+          c.sprites.versions["generation-v"]["black-white"].animated
+            .front_default,
+        hp: obj.hp,
+        attack: obj.attack,
+        defense: obj.defense,
+        speed: obj.speed,
         height: c.height,
         weight: c.weight,
       };
     });
-
+    console.log(final);
     return final;
   } catch (error) {
     return { error };
@@ -47,9 +63,8 @@ const dbInfo = async () => {
       },
     },
   });
-  console.log(puchimones)
-  let pokepeso = puchimones.map(e => {
-    return{
+  let pokepeso = puchimones.map((e) => {
+    return {
       id: e.id,
       name: e.name,
       hp: e.hp,
@@ -60,16 +75,16 @@ const dbInfo = async () => {
       height: e.height,
       image: e.image,
       createInDB: e.createInDB,
-      type: e.types.map(r => r.name)
-    }
-  })
-  return pokepeso
+      type: e.types.map((r) => r.name),
+    };
+  });
+  return pokepeso;
 };
 
 const todaInfo = async () => {
   const apipoke = await infoApi();
   const dbpoke = await dbInfo();
-  const allpokes = apipoke.concat(dbpoke);
+  const allpokes = dbpoke.concat(apipoke);
   return allpokes;
 };
 const todaType = async () => {

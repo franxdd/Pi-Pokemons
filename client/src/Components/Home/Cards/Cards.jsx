@@ -7,8 +7,9 @@ import {
   filterPokemonType,
   CreateinDB,
   orderByAttack,
-  orderByName
+  orderByName,
 } from "../../../Redux/Actions";
+import Gif from "../../Multimedia/pokespera.gif";
 import "./Cards.css";
 
 function Cards() {
@@ -17,7 +18,7 @@ function Cards() {
   let { allPokemons } = useSelector((state) => state);
   const [pagina, setPagina] = useState(1);
   const [porPagina, setPorPagina] = useState(12);
-  const [orden, setOrden] = useState("")
+  const [orden, setOrden] = useState("");
   const ultPag = pagina * porPagina;
   const priPag = ultPag - porPagina;
   let allpoke = allPokemons?.slice(priPag, ultPag);
@@ -39,24 +40,31 @@ function Cards() {
   function handlleFilterExist(e) {
     dispatch(CreateinDB(e.target.value));
   }
-  function handlleOrderName(e) {
-    e.preventDefault()
-    dispatch(orderByName(e.target.value));
-    console.log(e.target.value);
-    setPagina(1)
-    setOrden(`Ordenado${e.target.value}`)
-  }
+  function handlleOrder(e) {
+    if(e.target.value === "Ascendente" || e.target.value === "Descendente"){
+      e.preventDefault();
+      dispatch(orderByName(e.target.value));
+      console.log(e.target.value);
+      setPagina(1);
+      setOrden(`Ordenado${e.target.value}`);
 
-  function handlleOrderAttack(e){
-    e.preventDefault()
-    dispatch(orderByAttack(e.target.value))
-    setPagina(1)
-    setOrden(`Ordenado${e.target.value}`)
-  }
-console.log(allPokemons)
+    }
+    else {e.preventDefault();
+    dispatch(orderByAttack(e.target.value));
+    setPagina(1);
+    setOrden(`Ordenado${e.target.value}`);
+  }}
+
+  // function handlleOrderAttack(e) {
+  //   e.preventDefault();
+  //   dispatch(orderByAttack(e.target.value));
+  //   setPagina(1);
+  //   setOrden(`Ordenado${e.target.value}`);
+  // }
+  console.log(allpoke);
   return (
     <div>
-      <div>
+      <div className="Filtros">
         <select onChange={(e) => handlleFilterType(e)}>
           <option value={"All"}>All</option>
           {filter?.map((r) => {
@@ -72,18 +80,15 @@ console.log(allPokemons)
           <option value={"Existente"}>Existente</option>
           <option value={"Creado"}>Creados</option>
         </select>
-        <select onChange={e => handlleOrderName(e)}>
+        <select onChange={(e) => handlleOrder(e)}>
           <option value={"Ascendente"}>A-Z</option>
           <option value={"Descendente"}>Z-A</option>
-        </select>
-        <select onChange={e => handlleOrderAttack(e)}>
-          <option>Order Attack</option>
           <option value={"MAX"}>Max attack</option>
           <option value={"MIN"}>Min attack</option>
-
         </select>
+        
       </div>
-      <div>
+      <div className="paginacion1">
         <Paginacion
           pagina={pagina}
           setPagina={setPagina}
@@ -92,20 +97,32 @@ console.log(allPokemons)
           porPagina={porPagina}
         />
       </div>
-
-      <div className="PokemonPrincipal">
-        {allpoke?.map((e) => {
-          return (
-            <Card
-              key={e.id}
-              id={e.id}
-              name={e.name}
-              type={e.type}
-              image={e.image}
-            />
-          );
-        })}
-      </div>
+     {allpoke.length === 0 ? (
+        <div className="contain">
+          <div className="loader">
+            <div className="face">
+              <div className="circle"></div>
+            </div>
+            <div className="face">
+              <div className="circle"></div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="PokemonPrincipal">
+          {allpoke?.map((e) => {
+            return (
+              <Card
+                key={e.id}
+                id={e.id}
+                name={e.name}
+                type={e.type}
+                image={e.image}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

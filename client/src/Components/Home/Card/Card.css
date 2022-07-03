@@ -1,10 +1,77 @@
-.card{
+/* .card{
+    display: flex;
+    flex-direction: column;
     margin: 10px;
+    align-items: center;
     border: 0px solid rgb(0, 0, 0);
     width: 200px;
-    height: 250px;
+    height: 200px;
     border-radius: 20px;
     box-shadow: 3px 3px 3px 4px rgba(0,0,0,0.30);
     backdrop-filter: blur(0.2rem);
     cursor: pointer;
+} */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  background: transparent;
+  border: 2px solid #077bff;
+  box-shadow: 2px 2px 15px #000000 inset;
+  text-align: center;
+  color: #e8e8e8;
+  font-family: "Pacifico";
+  backdrop-filter: blur(0.2rem);
+  cursor: pointer;
+}
+
+.card:hover {
+  color: #077bff;
+  box-shadow: 2px 2px 15px #077bff inset;
+}
+
+.divtitulocard {
+  display: flex;
+  flex-direction: column;
+}
+.TituloyType {
+  margin: 0;
+}
+.TituloyType {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  border: none;
+  font: normal 20px / normal "Warnes", Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: normal;
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1),
+    0 0 30px rgba(255, 255, 255, 1), 0 0 30px #00ff08, 0 0 60px #00ff08,
+    0 0 70px #00ff08, 0 0 90px #00ff08;
+  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.TituloyType:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1),
+    0 0 30px rgba(255, 255, 255, 1), 0 0 30px #ff0000, 0 0 60px #ff0000,
+    0 0 70px #ff0000, 0 0 90px #ff0000;
+}
+.LinkCard {
+  text-decoration: none;
+}
+.imageCard{
+  width: 8vh;
 }

@@ -1,5 +1,45 @@
-.Paginacion{
-    display: flex;
-    height: 50px;
-    width: 50px;
+.Paginacion {
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+ul {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  padding: 10px;
+}
+li {
+  color: white;
+  transition: 5ms;
+  cursor: pointer;
+}
+.buttonInicio2 {
+  /* Variables */
+  font-size: 13px;
+  font-weight: bold;
+
+  border-radius: 0.75em;
+  background: #131313;
+}
+
+.SpanDelBoton2 {
+  display: block;
+  box-sizing: border-box;
+  border-radius: 0.75em;
+  padding: 0.25em 0.75em;
+
+  color: #ffffff;
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.buttonInicio2:hover .SpanDelBoton {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.buttonInicio2:active .SpanDelBoton {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
 }

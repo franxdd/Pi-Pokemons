@@ -1,0 +1,14 @@
+.PrincipalHome {
+  background-image: url("../Multimedia/pikapika.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  height: 100vh;
+  
+}
+.TituloHome {
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin: 0;
+}

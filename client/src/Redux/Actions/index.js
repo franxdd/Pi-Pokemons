@@ -20,8 +20,8 @@ export const createPokemon = (payload) => {
 };
 
 export const getAllPokemons = () => {
-  return async (dispatch) => {
-    return await fetch("http://localhost:3001/pokemons")
+  return (dispatch) => {
+    return fetch("http://localhost:3001/pokemons")
       .then((r) => r.json())
       .then((pokemones) => {
         dispatch({
@@ -32,8 +32,8 @@ export const getAllPokemons = () => {
   };
 };
 export const getPokeDetail = (id) => {
-  return async (dispatch) => {
-    return await fetch(`http://localhost:3001/pokemons/${id}`)
+  return (dispatch) => {
+    return fetch(`http://localhost:3001/pokemons/${id}`)
       .then((r) => r.json())
       .then((data) => {
         dispatch({
@@ -44,8 +44,8 @@ export const getPokeDetail = (id) => {
   };
 };
 export const getPokeType = () => {
-  return async (dispatch) => {
-    return await fetch(`http://localhost:3001/types`)
+  return (dispatch) => {
+    return fetch(`http://localhost:3001/types`)
       .then((r) => r.json())
       .then((data) => {
         dispatch({
@@ -92,7 +92,7 @@ export const getname = (name) => {
         payload: json.data,
       });
     } catch (error) {
-      console.log(error);
+      alert(error.response.data);
     }
   };
 };

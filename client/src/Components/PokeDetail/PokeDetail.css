@@ -1,14 +1,44 @@
-.card1{
-    display: flex;   
-    justify-content: center;
-    width: 40%;
-    height: 800px;
-    flex-direction: column;
-   
+.pokecardimage {
+  background-image: url("../Multimedia/pikapika.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
-.image{
-
+.card1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.detail1{
+.h1delDetalle {
+  margin: 0;
+}
+.h5delDetalle {
+  margin: 0;
+}
+.detail1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cardcover {
+  border-radius: 20px;
+  background: transparent;
+  border: 2px solid #077bff;
+  box-shadow: 2px 2px 15px #000000 inset;
+  text-align: center;
+  color: #e8e8e8;
+  font-family: "Pacifico";
+  -webkit-backdrop-filter: blur(0.2rem);
+  backdrop-filter: blur(0.2rem);
+  width: 27%;
+  display: flex;
+  justify-content: center;
+}
 
+.cardcover:hover {
+  color: #077bff;
+  box-shadow: 2px 2px 15px #077bff inset;
 }

@@ -1,5 +1,8 @@
 .formF{
-    background-color: rgb(201, 38, 38);
+    /* background-image: url("../Multimedia/Cubone.jpg"); */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
 }
 .form{
     display: flex;

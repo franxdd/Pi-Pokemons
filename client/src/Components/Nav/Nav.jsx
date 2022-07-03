@@ -1,20 +1,30 @@
-import { React, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-
+import "./Nav.css";
 function Nav() {
   return (
-    <div>
-      <nav>
-        <h3>¿Queres crear un Pokemon?</h3>
-        <Link to="/home/create/create"> Has click aqui</Link> <br></br>
-        <Link to="/home">
-          <button>inicio</button>{" "}
+    <nav className="nav">
+      <div>
+        <h3 className="tituloNav">¿Queres crear un Pokemon?</h3>
+        <Link to="/home/create/create" className="LinkNav">
+          <button className="buttonCrear">Crear</button>{" "}
+        </Link>{" "}
+        <br></br>
+      </div>
+      <div>
+        <Link to="/">
+          <button className="buttonInicio">
+            <span class="SpanDelBoton"> Inicio</span>
+          </button>{" "}
         </Link>
-        <SearchBar/>
-      </nav>
-    </div>
+      </div>
+
+      <div>
+        <SearchBar />
+      </div>
+    </nav>
   );
 }
 
