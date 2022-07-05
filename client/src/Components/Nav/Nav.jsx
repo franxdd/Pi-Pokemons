@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import "./Nav.css";
@@ -16,9 +15,11 @@ function Nav() {
       <div>
         <Link to="/">
           <button className="buttonInicio">
-            <span class="SpanDelBoton"> Inicio</span>
+            <span class="SpanDelBoton">Landing</span>
           </button>{" "}
         </Link>
+        <Link to="/home"><button className="buttonInicio">
+          <span class="SpanDelBoton">Home</span></button></Link>
       </div>
 
       <div>

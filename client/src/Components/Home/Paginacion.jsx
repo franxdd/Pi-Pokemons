@@ -25,7 +25,7 @@ function Paginacion({ pagina, setPagina, maximo, paginado }) {
         {pages &&
           pages.map((number) => (
             <li key={number}>
-              <span onClick={() => paginado(number)}>{number}</span>
+              <span className="spanPaginacion" onClick={() => paginado(number)}>{number}</span>
             </li>
           ))}
       </ul>

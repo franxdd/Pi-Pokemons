@@ -8,6 +8,7 @@ export const FILTER_POKEMON_DB = "FILTER_POKEMON_DB";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const GET_POKEMONS_NAME = "GET_POKEMONS_NAME";
+export const DELETE_POKEMON = "DELETE_POKEMON"
 
 export const createPokemon = (payload) => {
   return async (dispatch) => {

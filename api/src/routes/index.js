@@ -43,15 +43,18 @@ router.get("/pokemons/:id", async (req, res) => {
 });
 
 router.post("/pokemons", async (req, res) => {
-  let { name, hp, attack, defense, speed, weight, height, image, type } = req.body
-  console.log(name, hp, attack, defense, speed, weight, height, image, type)
-  let CrearPokemon = await Pokemon.create({ name, hp, attack, defense, speed, weight, height, image })
-  let tipoEnDb = await Type.findAll({
-    where: {name: type}
-  })
-  console.log(CrearPokemon)
-  CrearPokemon.addType(tipoEnDb)
-  res.send("Tu Puchimon fue creado")
+  try {
+    
+    let { name, hp, attack, defense, speed, weight, height, image, type } = req.body
+    let CrearPokemon = await Pokemon.create({ name, hp, attack, defense, speed, weight, height, image })
+    let tipoEnDb = await Type.findAll({
+      where: {name: type}
+    })
+    CrearPokemon.addType(tipoEnDb)
+    res.status(201).send("Tu Puchimon fue creado")
+  } catch (error) {
+    res.status(404).send(error)
+  }
 });
 
 module.exports = router;

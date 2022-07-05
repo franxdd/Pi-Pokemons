@@ -47,7 +47,6 @@ const infoApi = async () => {
         weight: c.weight,
       };
     });
-    console.log(final);
     return final;
   } catch (error) {
     return { error };
@@ -90,7 +89,6 @@ const todaInfo = async () => {
 const todaType = async () => {
   const q = await axios.get("https://pokeapi.co/api/v2/type");
   const w = q.data.results.map((e) => e.name);
-  console.log(w);
 
   w.forEach((r) => {
     Type.findOrCreate({

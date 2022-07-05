@@ -87,5 +87,8 @@
     }
   }
   .Filtros{
+    display: flex;
     margin-left: 50px;
+    width: 30%;
+    justify-content: space-between;
   }

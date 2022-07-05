@@ -3,13 +3,13 @@ import Card from "../Card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import Paginacion from "../Paginacion";
 import {
+  getAllPokemons,
   getPokeType,
   filterPokemonType,
   CreateinDB,
   orderByAttack,
   orderByName,
 } from "../../../Redux/Actions";
-import Gif from "../../Multimedia/pokespera.gif";
 import "./Cards.css";
 
 function Cards() {
@@ -27,7 +27,6 @@ function Cards() {
   useEffect(() => {
     dispatch(getPokeType());
   }, [dispatch]);
-
   const filter = useSelector((state) => state.type);
 
   const paginado = (pages) => {
@@ -35,58 +34,65 @@ function Cards() {
   };
 
   function handlleFilterType(e) {
+    setPagina(1);
     dispatch(filterPokemonType(e.target.value));
   }
   function handlleFilterExist(e) {
+    setPagina(1);
     dispatch(CreateinDB(e.target.value));
   }
   function handlleOrder(e) {
-    if(e.target.value === "Ascendente" || e.target.value === "Descendente"){
+    if (e.target.value === "Ascendente" || e.target.value === "Descendente") {
       e.preventDefault();
       dispatch(orderByName(e.target.value));
       console.log(e.target.value);
       setPagina(1);
       setOrden(`Ordenado${e.target.value}`);
-
+    } else {
+      e.preventDefault();
+      dispatch(orderByAttack(e.target.value));
+      setPagina(1);
+      setOrden(`Ordenado${e.target.value}`);
     }
-    else {e.preventDefault();
-    dispatch(orderByAttack(e.target.value));
-    setPagina(1);
-    setOrden(`Ordenado${e.target.value}`);
-  }}
+  }
 
-  // function handlleOrderAttack(e) {
-  //   e.preventDefault();
-  //   dispatch(orderByAttack(e.target.value));
-  //   setPagina(1);
-  //   setOrden(`Ordenado${e.target.value}`);
-  // }
+  function handlleAll(e) {
+    e.preventDefault();
+    dispatch(getAllPokemons());
+    setPagina(1);
+  }
   console.log(allpoke);
   return (
     <div>
       <div className="Filtros">
-        <select onChange={(e) => handlleFilterType(e)}>
-          <option value={"All"}>All</option>
-          {filter?.map((r) => {
-            return (
-              <option key={r.name} value={r.name}>
-                {r.name}
-              </option>
-            );
-          })}
-        </select>
-        <select onChange={(e) => handlleFilterExist(e)}>
-          <option value={"Todos"}>Todos</option>
-          <option value={"Existente"}>Existente</option>
-          <option value={"Creado"}>Creados</option>
-        </select>
-        <select onChange={(e) => handlleOrder(e)}>
-          <option value={"Ascendente"}>A-Z</option>
-          <option value={"Descendente"}>Z-A</option>
-          <option value={"MAX"}>Max attack</option>
-          <option value={"MIN"}>Min attack</option>
-        </select>
-        
+        <button onClick={handlleAll}>reset</button>
+        <div>
+          <select onChange={(e) => handlleFilterType(e)}>
+            <option value={"All"}>All</option>
+            {filter?.map((r) => {
+              return (
+                <option key={r.name} value={r.name}>
+                  {r.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div>
+          <select onChange={(e) => handlleFilterExist(e)}>
+            <option value={"Todos"}>Todos</option>
+            <option value={"Existente"}>Existente</option>
+            <option value={"Creado"}>Creados</option>
+          </select>
+        </div>
+        <div>
+          <select onChange={(e) => handlleOrder(e)}>
+            <option value={"Ascendente"}>A-Z</option>
+            <option value={"Descendente"}>Z-A</option>
+            <option value={"MAX"}>Max attack</option>
+            <option value={"MIN"}>Min attack</option>
+          </select>
+        </div>
       </div>
       <div className="paginacion1">
         <Paginacion
@@ -97,7 +103,7 @@ function Cards() {
           porPagina={porPagina}
         />
       </div>
-     {allpoke.length === 0 ? (
+      {allpoke.length === 0 ? (
         <div className="contain">
           <div className="loader">
             <div className="face">

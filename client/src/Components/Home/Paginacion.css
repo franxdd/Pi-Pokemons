@@ -36,10 +36,17 @@ li {
 
 .buttonInicio2:hover .SpanDelBoton {
   /* Pull the button upwards when hovered */
-  transform: translateY(-0.33em);
+  transform: translateY(-0.63em);
 }
 
 .buttonInicio2:active .SpanDelBoton {
   /* Push the button downwards when pressed */
   transform: translateY(0);
+}
+
+.spanPaginacion:hover {
+  /* Pull the button upwards when hovered */
+  /* transform: (0.63em); */
+  font-size: large;
+  transition: transform 0.1s ease;
 }

@@ -1,15 +1,128 @@
-.formF{
-    /* background-image: url("../Multimedia/Cubone.jpg"); */
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
+.formF {
+  background-image: url("../Multimedia/Cubone.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
-.form{
-    display: flex;
-    flex-direction: column;
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  color: white;
+  margin-left: 20px;
+}
+
+.divformulario {
+    --width-of-input: 200px;
+    --border-height: 1px;
+    --border-before-color: rgba(221, 221, 221, 0.39);
+    --border-after-color: #5891ff;
+    --input-hovered-color: #4985e01f;
+    position: relative;
+    width: var(--width-of-input);
+}
+.inputform {
+    color: #fff;
+    font-size: 0.9rem;
+    background-color: transparent;
     width: 100%;
-    height: 100%;
-    align-items:center;
-    flex-wrap: wrap;
-    ;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
 }
+.spanform{
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+}
+.inputform:hover {
+    background: var(--input-hovered-color);
+   }
+   
+   .inputform:focus {
+    outline: none;
+   }
+   .inputform:focus ~ .input-border {
+    width: 100%;
+   }
+
+   .buttonformsubmit {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 10px 30px;
+    transition: 0.5s;
+    position: relative;
+    font-size: 17px;
+    background: #333;
+    border: none;
+    color: #fff;
+  }
+  
+  .buttonformsubmit:hover {
+    letter-spacing: 0.25em;
+    background: #00b0a1;
+    color: #00b0a1;
+    box-shadow: 0 0 45px #00b0a1;
+  }
+  
+  .buttonformsubmit::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #222222;
+  }
+  
+  .buttonformsubmit .spansubmit {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .buttonformsubmit .iform {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+  
+  .buttonformsubmit .iform::before {
+    content: '';
+    position: absolute;
+    border: 2px solid #00b0a1;
+    width: 7px;
+    height: 4px;
+    top: -3.5px;
+    left: 80%;
+    background: #222222;
+    transform: translateX(-50%);
+    transition: 0.5s;
+  }
+  
+  .buttonformsubmit:hover .iform::before {
+    width: 20px;
+    left: 20%;
+  }
+  
+  .buttonformsubmit .iform::after {
+    content: '';
+    position: absolute;
+    border: 2px solid #00b0a1;
+    width: 7px;
+    height: 4px;
+    bottom: -3.5px;
+    left: 20%;
+    background: #222222;
+    transform: translateX(-50%);
+    transition: 0.5s;
+  }
+  
+  .buttonformsubmit:hover .iform::after {
+    width: 20px;
+    left: 80%;
+  }

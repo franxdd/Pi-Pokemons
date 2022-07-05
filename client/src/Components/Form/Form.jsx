@@ -48,7 +48,16 @@ function Form() {
   const dispatch = useDispatch();
   const history = useHistory();
   const tipo = useSelector((state) => state.type);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    name: "",
+    type: [],
+    hp: "",
+    attack: "",
+    defense: "",
+    speed: "",
+    height: "",
+    weight: "",
+  });
   const [input, setInput] = useState({
     name: "",
     type: [],
@@ -82,7 +91,6 @@ function Form() {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-      disabled: true,
     });
     setErrors(
       validate({
@@ -91,8 +99,8 @@ function Form() {
       })
     );
   }
+
   function handdleSelect(e) {
-    e.preventDefault();
     setInput({
       ...input,
       type: [...input.type, e.target.value],
@@ -125,103 +133,134 @@ function Form() {
       alert("Hay errores");
     }
   }
-  console.log(errors, "soy el error tipo");
-  console.log(Object.keys(errors).length, "Soy el objeto");
-  console.log(input.type.length, "soy el  tipo ");
+  console.log(Object.values(errors), "soy la cantidad de errroes");
+
   return (
     <div className="formF">
       <form className="form" onSubmit={(e) => handdleSubmit(e)}>
-        <div></div>
-        <label>Nombre: </label>
-        <input
-          type={"text"}
-          value={input.name}
-          name="name"
-          onChange={handdleChange}
-        />
-        {errors.name && <p className="error">{errors.name}</p>}
-        <label>Tipo: </label>
-        <button type="button" onClick={handdleReset}>
+        <div className="divformulario">
+          <label className="labelform">Nombre: </label>
+          <input
+          autoComplete="off"
+            className="inputform"
+            type={"text"}
+            value={input.name}
+            name="name"
+            onChange={handdleChange}
+          />
+          <span className="spanform"></span>
+          {errors.name && <p className="error">{errors.name}</p>}
+        </div>
+        <div className="divformulario">
+          <label className="labelform">Tipo: </label>
+          <button type="button" onClick={handdleReset}>
+            {" "}
+            reset
+          </button>
+          <select onChange={handdleSelect}>
+            {tipo.map((r) => {
+              return (
+                <option key={r.name} value={r.name}>
+                  {r.name}
+                </option>
+              );
+            })}
+          </select>
+          <ul>
+            <li>{input.type.map((e) => e + " ")}</li>
+          </ul>
+          <p className="error">{errors.type}</p>
+        </div>
+        <div className="divformulario">
+          <label className="labelform">Url de la imagen: </label>
+          <input
+            className="input-form"
+            type={"text"}
+            value={input.image}
+            name="image"
+            onChange={handdleChange}
+          />
+          <span className="spanform"></span>
+          {errors.image && <p className="error">{errors.image}</p>}
+        </div>
+
+        <div className="divformulario">
+          <label className="labelform">Vida: </label>
+          <input
+            className="inputform"
+            type={"number"}
+            value={input.hp}
+            name="hp"
+            onChange={handdleChange}
+          ></input>
+          <span className="spanform"></span>
+          {errors.hp && <p className="error">{errors.hp}</p>}
+        </div>
+        <div className="divformulario">
+          <label className="labelform">Ataque: </label>
+          <input
+            className="inputform"
+            type={"number"}
+            value={input.attack}
+            name="attack"
+            onChange={handdleChange}
+          />
+          <span className="spanform"></span>
+          {errors.attack && <p className="error">{errors.attack}</p>}
+        </div>
+        <div className="divformulario">
+          <label className="labelform">Defensa: </label>
+          <input
+            className="inputform"
+            type={"number"}
+            value={input.defense}
+            name="defense"
+            onChange={handdleChange}
+          />
+          <span className="spanform"></span>
+          {errors.defense && <p className="error">{errors.defense}</p>}
+        </div>
+        <div className="divformulario">
+          <label className="labelform">Velocidad: </label>
+          <input
+            className="inputform"
+            type={"number"}
+            value={input.speed}
+            name="speed"
+            onChange={handdleChange}
+          />
+          <span className="spanform"></span>
+          {errors.speed && <p className="error">{errors.speed}</p>}
+        </div>
+        <div className="divformulario">
+          <label className="labelform">Altura:</label>
+          <input
+            className="inputform"
+            type={"number"}
+            value={input.height}
+            name="height"
+            onChange={handdleChange}
+          />
+          <span className="spanform"></span>
+          {errors.height && <p className="error">{errors.height}</p>}
+        </div>
+        <div className="divformulario">
+          <label className="labelform">Peso:</label>
+          <input
+            className="inputform"
+            type={"number"}
+            value={input.weight}
+            name="weight"
+            onChange={handdleChange}
+          />
+          <span className="spanform"></span>
+          {errors.weight && <p className="error">{errors.weight}</p>}
+        </div>
+
+        <button  type="submit" disabled={Object.values(errors).length}>
           {" "}
-          reset
-        </button>
-        <select onChange={handdleSelect}>
-          {tipo.map((r) => {
-            return (
-              <option key={r.name} value={r.name}>
-                {r.name}
-              </option>
-            );
-          })}
-        </select>
-        <ul>
-          <li>{input.type.map((e) => e + " ")}</li>
-        </ul>
-        <p className="error">{errors.type}</p>
-
-        <label>Url de la imagen: </label>
-        <input
-          type={"text"}
-          value={input.image}
-          name="image"
-          onChange={handdleChange}
-        />
-        {errors.image && <p className="error">{errors.image}</p>}
-
-        <label>Estadisticas </label>
-
-        <label>hp: </label>
-        <input
-          type={"number"}
-          value={input.hp}
-          name="hp"
-          onChange={handdleChange}
-        ></input>
-        {errors.hp && <p className="error">{errors.hp}</p>}
-        <label>attack: </label>
-        <input
-          type={"number"}
-          value={input.attack}
-          name="attack"
-          onChange={handdleChange}
-        />
-        {errors.attack && <p className="error">{errors.attack}</p>}
-        <label>defense: </label>
-        <input
-          type={"number"}
-          value={input.defense}
-          name="defense"
-          onChange={handdleChange}
-        />
-        {errors.defense && <p className="error">{errors.defense}</p>}
-        <label>speed: </label>
-        <input
-          type={"number"}
-          value={input.speed}
-          name="speed"
-          onChange={handdleChange}
-        />
-        {errors.speed && <p className="error">{errors.speed}</p>}
-        <label>height:</label>
-        <input
-          type={"number"}
-          value={input.height}
-          name="height"
-          onChange={handdleChange}
-        />
-        {errors.height && <p className="error">{errors.height}</p>}
-        <label>weight:</label>
-        <input
-          type={"number"}
-          value={input.weight}
-          name="weight"
-          onChange={handdleChange}
-        />
-        {errors.weight && <p className="error">{errors.weight}</p>}
-
-        <button type="submit" disabled={Object.values(errors).length}>
-          {" "}
-          Crear Personaje
+          <span className="spansubmit">Crear Personaje</span><i className="iform"></i>
+         
         </button>
       </form>
     </div>
