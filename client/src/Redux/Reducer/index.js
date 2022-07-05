@@ -8,7 +8,6 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_ATTACK,
   GET_POKEMONS_NAME,
-  DELETE_POKEMON,
   
 } from "../Actions/index.js";
 
@@ -62,7 +61,7 @@ const rootRouter = (state = initialState, action) => {
       
       case FILTER_POKEMON_DB:
         if (action.payload === "Creado") {
-          let created = state.allPokemons.filter((e) => e.createInDB);
+          let created = state.backup.filter((e) => e.createInDB);
           
           console.log(created)
         return {
@@ -70,7 +69,7 @@ const rootRouter = (state = initialState, action) => {
           allPokemons: created,
         };
       } else if (action.payload === "Existente") {
-        let created = state.allPokemons.filter((e) => !e.createInDB);
+        let created = state.backup.filter((e) => !e.createInDB);
         return {
           ...state,
           allPokemons: created,
