@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import Card from "../Card/Card";
 import { useDispatch, useSelector } from "react-redux";
-import Paginacion from "../Paginacion";
+import Paginacion from "../Paginacion/Paginacion";
 import {
   getAllPokemons,
   getPokeType,
@@ -9,6 +9,7 @@ import {
   CreateinDB,
   orderByAttack,
   orderByName,
+  ordernumber,
 } from "../../../Redux/Actions";
 import "./Cards.css";
 
@@ -17,21 +18,18 @@ function Cards() {
 
   let { allPokemons } = useSelector((state) => state);
   const [pagina, setPagina] = useState(1);
-  const [porPagina, setPorPagina] = useState(12);
-  const [orden, setOrden] = useState("");
+  const porPagina = 12;
   const ultPag = pagina * porPagina;
   const priPag = ultPag - porPagina;
   let allpoke = allPokemons?.slice(priPag, ultPag);
+
   const maximo = allPokemons?.length / porPagina;
+  const [attackorder, setAttackorder] = useState();
 
   useEffect(() => {
     dispatch(getPokeType());
   }, [dispatch]);
   const filter = useSelector((state) => state.type);
-
-  const paginado = (pages) => {
-    setPagina(pages);
-  };
 
   function handlleFilterType(e) {
     setPagina(1);
@@ -47,12 +45,10 @@ function Cards() {
       dispatch(orderByName(e.target.value));
       console.log(e.target.value);
       setPagina(1);
-      setOrden(`Ordenado${e.target.value}`);
     } else {
       e.preventDefault();
       dispatch(orderByAttack(e.target.value));
       setPagina(1);
-      setOrden(`Ordenado${e.target.value}`);
     }
   }
 
@@ -61,7 +57,17 @@ function Cards() {
     dispatch(getAllPokemons());
     setPagina(1);
   }
-  console.log(allpoke);
+  function handleinputattack(e) {
+    e.preventDefault();
+    setAttackorder(e.target.value);
+  }
+
+  function handleordernumbersubmit(e) {
+    e.preventDefault();
+    dispatch(ordernumber(attackorder));
+    setPagina(1);
+  }
+
   return (
     <div>
       <div className="Filtros">
@@ -93,15 +99,19 @@ function Cards() {
             <option value={"MIN"}>Min attack</option>
           </select>
         </div>
+        <div>
+          <input
+            placeholder="filtro por ataque"
+            type="number"
+            value={attackorder}
+            name="number"
+            onChange={handleinputattack}
+          ></input>
+          <button onClick={handleordernumbersubmit}>filtrar</button>
+        </div>
       </div>
       <div className="paginacion1">
-        <Paginacion
-          pagina={pagina}
-          setPagina={setPagina}
-          paginado={paginado}
-          maximo={maximo}
-          porPagina={porPagina}
-        />
+        <Paginacion pagina={pagina} setPagina={setPagina} maximo={maximo} />
       </div>
       {allpoke.length === 0 ? (
         <div className="contain">

@@ -8,7 +8,8 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_ATTACK,
   GET_POKEMONS_NAME,
-  
+  ORDERBYNUMBER,
+  WILL,
 } from "../Actions/index.js";
 
 const initialState = {
@@ -58,27 +59,27 @@ const rootRouter = (state = initialState, action) => {
           allPokemons: filterPokemons,
         };
       }
-      
-      case FILTER_POKEMON_DB:
-        if (action.payload === "Creado") {
-          let created = state.backup.filter((e) => e.createInDB);
-          
-          console.log(created)
+
+    case FILTER_POKEMON_DB:
+      if (action.payload === "Creado") {
+        let created = state.allPokemons.filter((e) => e.createInDB);
+
+        console.log(created);
         return {
           ...state,
           allPokemons: created,
         };
       } else if (action.payload === "Existente") {
-        let created = state.backup.filter((e) => !e.createInDB);
+        let created = state.allPokemons.filter((e) => !e.createInDB);
         return {
           ...state,
           allPokemons: created,
         };
       } else
-      return {
-        ...state,
-        allPokemons: state.backup,
-      };
+        return {
+          ...state,
+          allPokemons: state.backup,
+        };
 
     case ORDER_BY_NAME:
       let order =
@@ -131,12 +132,25 @@ const rootRouter = (state = initialState, action) => {
               }
               return 0;
             });
+
       return {
         ...state,
         allPokemons: attack,
+      };
+    case ORDERBYNUMBER:
+      const number = state.allPokemons.filter((e) => e.attack < action.payload);
+      return {
+        ...state,
+        allPokemons: number,
+      };
+    case WILL:
+      return {
+        ...state,
+        detail: [],
       };
     default:
       return { ...state };
   }
 };
+
 export default rootRouter;

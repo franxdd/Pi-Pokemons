@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Components/Home/Home";
 import PokeDetail from "./Components/PokeDetail/PokeDetail";
@@ -12,8 +12,7 @@ function App() {
       <Route path={"/home"} component={Nav}></Route>
       <Route exact path={"/home"} component={Home}></Route>
       <Route exact path={"/home/:id"} component={PokeDetail}></Route>
-      
-      <Route exact path={"/home/create/create"} component={Form}></Route>
+      <Route exact path={"/create"} component={Form}></Route>
     </div>
   );
 }

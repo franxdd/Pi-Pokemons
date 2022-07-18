@@ -7,7 +7,7 @@ function Nav() {
     <nav className="nav">
       <div>
         <h3 className="tituloNav">¿Queres crear un Pokemon?</h3>
-        <Link to="/home/create/create" className="LinkNav">
+        <Link to="/create" className="LinkNav">
           <button className="buttonCrear">Crear</button>{" "}
         </Link>{" "}
         <br></br>
@@ -15,11 +15,11 @@ function Nav() {
       <div>
         <Link to="/">
           <button className="buttonInicio">
-            <span class="SpanDelBoton">Landing</span>
+            <span className="SpanDelBoton">Landing</span>
           </button>{" "}
         </Link>
         <Link to="/home"><button className="buttonInicio">
-          <span class="SpanDelBoton">Home</span></button></Link>
+          <span className="SpanDelBoton">Home</span></button></Link>
       </div>
 
       <div>

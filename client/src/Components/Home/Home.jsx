@@ -1,16 +1,18 @@
 import React from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllPokemons } from "../../Redux/Actions";
 import Cards from "./Cards/Cards";
-import "./Home.css"
+import "./Home.css";
 
 function Home() {
   const dispatch = useDispatch();
 
+  let { allPokemons } = useSelector((state) => state);
+
   useEffect(() => {
-    dispatch(getAllPokemons());
-  }, [dispatch]);
+    if (!allPokemons.length) dispatch(getAllPokemons());
+  }, [dispatch, allPokemons.length]);
 
   return (
     <div className="PrincipalHome">

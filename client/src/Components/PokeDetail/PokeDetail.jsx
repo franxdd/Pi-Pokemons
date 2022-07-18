@@ -1,27 +1,31 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokeDetail } from "../../Redux/Actions";
+import { getPokeDetail, willunmont } from "../../Redux/Actions";
 import { useEffect } from "react";
 import "./PokeDetail.css";
 
 function PokeDetail(props) {
-  console.log(props);
+  const { detail } = useSelector((state) => state);
+
   const dispatch = useDispatch();
   const { id } = props.match.params;
 
   useEffect(() => {
     dispatch(getPokeDetail(id));
-  }, []);
+    return () => dispatch(willunmont());
+  }, [dispatch, id]);
 
-  const { detail } = useSelector((state) => state);
-  console.log();
   return (
     <div className="pokecardimage">
       {detail[0] ? (
         <div className="cardcover">
           <div className="card1">
             <h1 className="h1delDetalle">Id: {detail[0]?.id}</h1>
-            <h1 className="h1delDetalle">Nombre: {detail[0]?.name.charAt(0).toUpperCase()+detail[0].name.slice(1)}</h1>
+            <h1 className="h1delDetalle">
+              Nombre:{" "}
+              {detail[0]?.name.charAt(0).toUpperCase() +
+                detail[0].name.slice(1)}
+            </h1>
             <h1 className="h1delDetalle">
               Tipos:{" "}
               {detail[0]?.createInDB
@@ -29,7 +33,7 @@ function PokeDetail(props) {
                 : detail[0]?.type?.map((e) => e + " ")}
             </h1>
             <div className="image">
-              <img src={detail[0]?.image} />
+              <img src={detail[0]?.image} alt="img" />
             </div>
 
             <h1 className="h1delDetalle">Estadisticas: </h1>

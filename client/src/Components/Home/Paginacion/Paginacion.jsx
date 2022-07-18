@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Paginacion.css";
-function Paginacion({ pagina, setPagina, maximo, paginado }) {
-  const [input, setInput] = useState(1);
+function Paginacion({ pagina, setPagina, maximo }) {
 
   const pages = [];
   for (let i = 1; i <= Math.ceil(maximo); i++) {
@@ -9,23 +8,21 @@ function Paginacion({ pagina, setPagina, maximo, paginado }) {
   }
 
   const previousPage = () => {
-    setInput(input - 1);
     setPagina(pagina - 1);
   };
   const nextPage = () => {
-    setInput(input + 1);
     setPagina(pagina + 1);
   };
   return (
     <div className="Paginacion">
       <button className="buttonInicio2"disabled={pagina === 1 || pagina < 1} onClick={previousPage}>
-      <span class="SpanDelBoton2">Previus</span>
+      <span className="SpanDelBoton2">Previus</span>
       </button>
       <ul className="lista">
         {pages &&
           pages.map((number) => (
             <li key={number}>
-              <span className="spanPaginacion" onClick={() => paginado(number)}>{number}</span>
+              <span className="spanPaginacion" onClick={() => setPagina(number)}>{number}</span>
             </li>
           ))}
       </ul>
@@ -33,7 +30,7 @@ function Paginacion({ pagina, setPagina, maximo, paginado }) {
         disabled={pagina === maximo || pagina > maximo}
         onClick={nextPage}
       >
-        <span class="SpanDelBoton2">Next</span>
+        <span className="SpanDelBoton2">Next</span>
       </button>
     </div>
   );

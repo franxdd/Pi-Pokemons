@@ -8,7 +8,8 @@ export const FILTER_POKEMON_DB = "FILTER_POKEMON_DB";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const GET_POKEMONS_NAME = "GET_POKEMONS_NAME";
-export const DELETE_POKEMON = "DELETE_POKEMON"
+export const ORDERBYNUMBER = "ORDERBYNUMBER";
+export const WILL = "WILL";
 
 export const createPokemon = (payload) => {
   return async (dispatch) => {
@@ -95,5 +96,22 @@ export const getname = (name) => {
     } catch (error) {
       alert(error.response.data);
     }
+  };
+};
+
+export const ordernumber = (number) => {
+  return function (dispatch) {
+    return dispatch({
+      type: ORDERBYNUMBER,
+      payload: number,
+    });
+  };
+};
+
+export const willunmont = () => {
+  return function (dispatch) {
+    return dispatch({
+      type: WILL,
+    });
   };
 };
