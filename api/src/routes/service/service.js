@@ -7,9 +7,9 @@ const infoApi = async () => {
     const datos = Url.data.results;
     const nt = Url.data.next;
     const next = await axios.get(nt);
-    const isdmnf = next.data.results;
+    const next2 = next.data.results;
 
-    const datos2 = datos.concat(isdmnf);
+    const datos2 = datos.concat(next2);
     const DatosFinalFinalisima = datos2.map((g) => axios.get(g.url));
 
     const datos3 = await axios.all(DatosFinalFinalisima);
@@ -74,9 +74,10 @@ const dbInfo = async () => {
       height: e.height,
       image: e.image,
       createInDB: e.createInDB,
-      type: e.types.map((r) => r.name),
+      type: e.types.map((r) => r.name), //aqui estoy cambiando el "type". Antes estaba en plural
     };
   });
+  console.log(puchimones)
   return pokepeso;
 };
 
