@@ -99,7 +99,7 @@ function Cards() {
             <option value={"MIN"}>Min attack</option>
           </select>
         </div>
-        <div>
+        {/* <div>
           <input
             placeholder="filtro por ataque"
             type="number"
@@ -108,7 +108,7 @@ function Cards() {
             onChange={handleinputattack}
           ></input>
           <button onClick={handleordernumbersubmit}>filtrar</button>
-        </div>
+        </div> */}
       </div>
       <div className="paginacion1">
         <Paginacion pagina={pagina} setPagina={setPagina} maximo={maximo} />

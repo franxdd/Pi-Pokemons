@@ -1,5 +1,6 @@
 .PrincipalHome {
-  background-image: url("../Multimedia/pikapika.jpg");
+  /* background-image: url("../Multimedia/pikapika.jpg"); */
+  background-color: rgb(16, 16, 16);
   background-size: cover;
   background-position: center;
   background-repeat: repeat;

@@ -20,20 +20,19 @@ function PokeDetail(props) {
       {detail[0] ? (
         <div className="cardcover">
           <div className="card1">
-            <h1 className="h1delDetalle">Id: {detail[0]?.id}</h1>
             <h1 className="h1delDetalle">
               Nombre:{" "}
               {detail[0]?.name.charAt(0).toUpperCase() +
                 detail[0].name.slice(1)}
             </h1>
             <h1 className="h1delDetalle">
-              Tipos:{" "}
+              Tipo:{" "}
               {detail[0]?.createInDB
                 ? detail[0]?.type?.map((e) => e + " ")
                 : detail[0]?.type?.map((e) => e + " ")}
             </h1>
-            <div className="image">
-              <img src={detail[0]?.image} alt="img" />
+            <div >
+              <img className="image" src={detail[0]?.image} alt="img" />
             </div>
 
             <h1 className="h1delDetalle">Estadisticas: </h1>

@@ -18,14 +18,7 @@ function Paginacion({ pagina, setPagina, maximo }) {
       <button className="buttonInicio2"disabled={pagina === 1 || pagina < 1} onClick={previousPage}>
       <span className="SpanDelBoton2">Previus</span>
       </button>
-      <ul className="lista">
-        {pages &&
-          pages.map((number) => (
-            <li key={number}>
-              <span className="spanPaginacion" onClick={() => setPagina(number)}>{number}</span>
-            </li>
-          ))}
-      </ul>
+      <span className="paginado">{pagina} de {Math.ceil(maximo) }</span>
       <button className="buttonInicio2"
         disabled={pagina === maximo || pagina > maximo}
         onClick={nextPage}

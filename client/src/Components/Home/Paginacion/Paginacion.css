@@ -50,3 +50,6 @@ li {
   font-size: large;
   transition: transform 0.1s ease;
 }
+.paginado{
+  color: white;
+}
